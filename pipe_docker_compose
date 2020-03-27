@@ -1,0 +1,18 @@
+pipeline {
+ agent any
+ options {
+  skipDefaultCheckout()
+ }
+ def mvnHome = tool name: 'maven', type: 'maven'
+ def mvnCMD = "${mvnHome}/bin/mvn"
+ stages {
+  stage('SCM') {
+   steps {
+    checkout scm
+   }
+  }
+ stage('Compile') {
+   sh "${mvnCMD} clean compile'
+   }
+ }
+ }
