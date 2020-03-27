@@ -35,5 +35,15 @@ pipeline {
     }
     }
     }
+    stage('Unit Tests') {
+    steps {
+    sh '${mvnCMD} test'
+   }
+   post {
+    always {
+     junit 'target/surefire-reports/**/*.xml'
+    }
+   }
+  }
     }
  }
