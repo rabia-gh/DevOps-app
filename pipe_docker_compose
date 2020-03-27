@@ -45,5 +45,10 @@ pipeline {
     }
    }
   }
+  stage('ExecuteSonarQubeReport'){
+    steps { 
+     sh "${mvnCMD} sonar:sonar"
+   }
+    }
     }
  }
