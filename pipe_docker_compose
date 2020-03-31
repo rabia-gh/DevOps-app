@@ -67,7 +67,8 @@ pipeline {
    stage('Deploy Dev'){
     steps { 
      sh 'mv target/demo*.war target/demo.war' 
-     shagent(['tomcat_jenkins']) {
+     
+      sshagent(['tomcat_jenkins']) {
         sh "${stopTomcat}"
         sh "${copyWar}"
         sh "${startTomcat}"
