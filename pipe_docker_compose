@@ -76,13 +76,13 @@ pipeline {
     }
    stage('Build Docker Image'){
     steps { 
-    sh 'docker build -t 196.184.129.19:8083/my-app:2.0.0 .'
+    sh 'docker build -t 196.184.129.19:8083/demo:2.0.0 .'
    }
    }
    stage('Push Docker Image'){
     steps { 
      sh "docker login -u admin -p 6197 196.184.129.19:8083" 
-     sh 'docker push 196.184.129.19:8083/my-app:2.0.0'
+     sh 'docker push 196.184.129.19:8083/demo:2.0.0'
      }
    }
     }
