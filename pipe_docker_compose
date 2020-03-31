@@ -3,8 +3,19 @@ pipeline {
  environment {
      mvnHome = tool name: 'maven', type: 'maven'
      mvnCMD = "${mvnHome}/bin/mvn"
+     
+     // variables for code analysis
+     
      SONARQUBE_URL = "http://172.31.140.193"
      SONARQUBE_PORT = "9000"
+     
+     // variables for tomcat in dev stage deployment
+     
+     tomcatIp = "192.168.179.131"
+     tomcatUser = 'rabiaa'
+     stopTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/shutdown.sh"
+     startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
+     copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
  }
  options {
   skipDefaultCheckout()
@@ -19,7 +30,8 @@ pipeline {
    parallel {
      stage('Compile') {
         steps {
-           sh "${mvnCMD} clean compile"
+           // sh "${mvnCMD} clean compile"
+              sh "${mvnCMD} clean package"
           }
           }
      stage('CheckStyle') {
@@ -50,6 +62,16 @@ pipeline {
   stage('ExecuteSonarQubeReport'){
     steps { 
      sh "${mvnCMD} sonar:sonar"
+   }
+    }
+   stage('Deploy Dev'){
+    steps { 
+     sh 'mv target/myweb*.war target/myweb.war' 
+     shagent(['tomcat_jenkins']) {
+        sh "${stopTomcat}"
+        sh "${copyWar}"
+        sh "${startTomcat}"
+	   }
    }
     }
     }
