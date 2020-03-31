@@ -15,7 +15,7 @@ pipeline {
      tomcatUser = 'rabiaa'
      stopTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/shutdown.sh"
      startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
-     copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
+     copyWar = "scp -o StrictHostKeyChecking=no target/demo.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
  }
  options {
   skipDefaultCheckout()
@@ -66,7 +66,7 @@ pipeline {
     }
    stage('Deploy Dev'){
     steps { 
-     sh 'mv target/myweb*.war target/myweb.war' 
+     sh 'mv target/demo*.war target/demo.war' 
      shagent(['tomcat_jenkins']) {
         sh "${stopTomcat}"
         sh "${copyWar}"
@@ -74,5 +74,16 @@ pipeline {
 	   }
    }
     }
+   stage('Build Docker Image'){
+    steps { 
+    sh 'docker build -t 196.184.129.19:8083/my-app:2.0.0 .'
+   }
+   }
+   stage('Push Docker Image'){
+    steps { 
+     sh "docker login -u admin -p 6197 196.184.129.19:8083" 
+     sh 'docker push 196.184.129.19:8083/my-app:2.0.0'
+     }
+   }
     }
  }
