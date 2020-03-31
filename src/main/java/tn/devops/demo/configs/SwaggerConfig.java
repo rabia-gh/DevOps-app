@@ -24,8 +24,8 @@ public class SwaggerConfig {
         		  "This pages documents Books app RESTful Web Service endpoints", "1.0","",
         		  new Contact(
         			         "ghoubentini rabia",
-        			         "https://github.com/rabia-gh"
-        			         //"ahmed24khaled@gmail.com"
+        			         "https://github.com/rabia-gh",
+        			         "ahmed24khaled@gmail.com"
         			 ), 
         		  "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0")
         		  )
