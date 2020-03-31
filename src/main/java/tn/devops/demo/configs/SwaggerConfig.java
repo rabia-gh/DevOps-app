@@ -23,9 +23,9 @@ public class SwaggerConfig {
         		  "Bookd app RESTful Web Service documentation", 
         		  "This pages documents Books app RESTful Web Service endpoints", "1.0","",
         		  new Contact(
-        			         "Ahmed KHALED",
-        			         "https://github.com/ahmed24khaled", 
-        			         "ahmed24khaled@gmail.com"
+        			         "ghoubentini rabia",
+        			         "https://github.com/rabia-gh"
+        			         //"ahmed24khaled@gmail.com"
         			 ), 
         		  "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0")
         		  )
