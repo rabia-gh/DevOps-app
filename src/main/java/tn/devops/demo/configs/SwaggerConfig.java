@@ -20,7 +20,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)  
           .apiInfo(
         		  new ApiInfo(
-        		  "Bookd app RESTful Web Service documentation", 
+        		  "Books app RESTful Web Service documentation to test a CI/CD pipeline", 
         		  "This pages documents Books app RESTful Web Service endpoints", "1.0","",
         		  new Contact(
         			         "ghoubentini rabia",
