@@ -25,7 +25,7 @@ public class SwaggerConfig {
         		  new Contact(
         			         "ghoubentini rabia",
         			         "https://github.com/rabia-gh",
-        			         "ahmed24khaled@gmail.com"
+        			         "rabiaghoubentini@gmail.com"
         			 ), 
         		  "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0")
         		  )
