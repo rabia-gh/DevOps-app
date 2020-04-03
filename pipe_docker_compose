@@ -28,7 +28,7 @@ pipeline {
   }
  stage('Build') {
    parallel {
-     stage('Compile') {
+     stage('Compile & package') {
         steps {
            // sh "${mvnCMD} clean compile"
               sh "${mvnCMD} clean package"
@@ -59,12 +59,12 @@ pipeline {
     }
    }
   }
-  stage('ExecuteSonarQubeReport'){
+  stage('SonarQubeReport'){
     steps { 
      sh "${mvnCMD} sonar:sonar"
    }
     }
-   stage('Deploy Dev'){
+   stage('Deploy to tomcat'){
     steps { 
      sh 'mv target/demo*.war target/demo.war' 
      
