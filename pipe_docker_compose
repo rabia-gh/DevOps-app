@@ -12,11 +12,14 @@ pipeline {
      
      // variables for tomcat in dev stage deployment
      
-     tomcatIp = "192.168.179.131"
-     tomcatUser = 'rabiaa'
-     stopTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/shutdown.sh"
-     startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
-     copyWar = "scp -o StrictHostKeyChecking=no target/demo.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
+     //tomcatIp = "192.168.179.131"
+     //tomcatUser = 'rabiaa'
+     //stopTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/shutdown.sh"
+     //startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
+     //copyWar = "scp -o StrictHostKeyChecking=no target/demo.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
+     stopTomcat = "/opt/tomcat8/bin/./shutdown.sh"
+     startTomcat ="/opt/tomcat8/bin/./startup.sh"
+     copyWar = "cp -o StrictHostKeyChecking=no target/demo.war /opt/tomcat8/webapps/"
  }
  options {
   skipDefaultCheckout()
