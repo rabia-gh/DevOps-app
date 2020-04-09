@@ -6,7 +6,8 @@ pipeline {
      
      // variables for code analysis
      
-     SONARQUBE_URL = "http://172.31.140.193"
+    // SONARQUBE_URL = "http://172.31.140.193"
+     SONARQUBE_URL = "http://192.168.179.131"
      SONARQUBE_PORT = "9000"
      
      // variables for tomcat in dev stage deployment
@@ -77,12 +78,13 @@ pipeline {
     }
    stage('Build Docker Image'){
     steps { 
+    //sh 'docker build -t 172.17.0.2:8083/demo:2.0.0 .'
     sh 'docker build -t 172.31.140.193:8083/demo:2.0.0 .'
    }
    }
    stage('Push Docker Image'){
     steps { 
-     sh "docker login -u admin -p 6197 172.31.140.193:8083" 
+     sh "docker login -u admin -p 6197 172.17.0.2:8083" 
      sh 'docker push 172.31.140.193:8083/demo:2.0.0'
      }
    }
