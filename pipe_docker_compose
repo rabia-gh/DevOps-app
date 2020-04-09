@@ -17,8 +17,8 @@ pipeline {
      //stopTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/shutdown.sh"
      //startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/bin/startup.sh"
      //copyWar = "scp -o StrictHostKeyChecking=no target/demo.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/webapps/"
-     stopTomcat = "/opt/tomcat8/bin/./shutdown.sh"
-     startTomcat ="/opt/tomcat8/bin/./startup.sh"
+     stopTomcat = "/opt/tomcat/bin/catalina.sh stop"
+     startTomcat ="/opt/tomcat/bin/catalina.sh start"
      copyWar = "cp -o StrictHostKeyChecking=no target/demo.war /opt/tomcat8/webapps/"
  }
  options {
